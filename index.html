@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CleanCity Pro</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="light-mode">
 
     <section id="landing-page" class="active-view">
@@ -30,13 +33,23 @@
                 <p class="tagline">Empowering Citizens. Transforming Cities.</p>
             </div>
             <div class="usp-grid">
-                <div class="usp-card"><span class="material-icons-round">camera_alt</span><h3>AI Detection</h3><p>Instant issue identification.</p></div>
-                <div class="usp-card"><span class="material-icons-round">emoji_events</span><h3>Earn Rewards</h3><p>Get points for every report.</p></div>
-                <div class="usp-card"><span class="material-icons-round">public</span><h3>Community Vote</h3><p>Vote on local issues map.</p></div>
+                <div class="usp-card"><span class="material-icons-round">camera_alt</span>
+                    <h3>AI Detection</h3>
+                    <p>Instant issue identification.</p>
+                </div>
+                <div class="usp-card"><span class="material-icons-round">emoji_events</span>
+                    <h3>Earn Rewards</h3>
+                    <p>Get points for every report.</p>
+                </div>
+                <div class="usp-card"><span class="material-icons-round">public</span>
+                    <h3>Community Vote</h3>
+                    <p>Vote on local issues map.</p>
+                </div>
             </div>
             <div class="landing-actions">
-                <button class="btn-xl" onclick="enterApp('user')">Login as Citizen</button>
-                <button class="admin-btn-landing" onclick="enterApp('admin')"><span class="material-icons-round">admin_panel_settings</span> Municipal Admin Login</button>
+                <button class="btn-xl" onclick="showAuthModal('user')">Login as Citizen</button>
+                <button class="admin-btn-landing" onclick="showAuthModal('admin')"><span
+                        class="material-icons-round">admin_panel_settings</span> Municipal Admin Login</button>
             </div>
         </div>
     </section>
@@ -58,10 +71,13 @@
             </div>
             <div class="nav-actions">
                 <div id="user-actions">
-                    <button class="btn-primary report-btn-nav" onclick="navigateTo('report')"><span class="material-icons-round">add_a_photo</span> Report</button>
+                    <button class="btn-primary report-btn-nav" onclick="navigateTo('report')"><span
+                            class="material-icons-round">add_a_photo</span> Report</button>
                 </div>
-                <button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode')"><span class="material-icons-round">dark_mode</span></button>
-                <button class="btn-text logout-btn" onclick="location.reload()"><span class="material-icons-round">logout</span></button>
+                <button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode')"><span
+                        class="material-icons-round">dark_mode</span></button>
+                <button class="btn-text logout-btn" onclick="location.reload()"><span
+                        class="material-icons-round">logout</span></button>
             </div>
         </nav>
 
@@ -72,24 +88,50 @@
                     <p>Together we keep our city clean and safe.</p>
                 </div>
                 <div class="dashboard-stats-grid">
-                    <div class="dash-card"><div class="icon-bg blue"><span class="material-icons-round">assignment</span></div><div><h3 id="total-reports">0</h3><p>Total Reports</p></div></div>
-                    <div class="dash-card green"><div class="icon-bg green"><span class="material-icons-round">check_circle</span></div><div><h3 id="resolved-reports">0</h3><p>Resolved</p></div></div>
-                    <div class="dash-card orange"><div class="icon-bg orange"><span class="material-icons-round">hourglass_top</span></div><div><h3 id="pending-reports">0</h3><p>Pending</p></div></div>
+                    <div class="dash-card">
+                        <div class="icon-bg blue"><span class="material-icons-round">assignment</span></div>
+                        <div>
+                            <h3 id="total-reports">0</h3>
+                            <p>Total Reports</p>
+                        </div>
+                    </div>
+                    <div class="dash-card green">
+                        <div class="icon-bg green"><span class="material-icons-round">check_circle</span></div>
+                        <div>
+                            <h3 id="resolved-reports">0</h3>
+                            <p>Resolved</p>
+                        </div>
+                    </div>
+                    <div class="dash-card orange">
+                        <div class="icon-bg orange"><span class="material-icons-round">hourglass_top</span></div>
+                        <div>
+                            <h3 id="pending-reports">0</h3>
+                            <p>Pending</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="recent-activity">
-                    <div class="section-header"><h3>Live Incident Updates</h3></div>
+                    <div class="section-header">
+                        <h3>Live Incident Updates</h3>
+                    </div>
                     <div id="active-reports-list" class="updates-grid">Loading...</div>
                 </div>
             </section>
 
             <section id="map" class="page-section fade-in-up">
-                <div class="page-header"><h2>Live Incident Map</h2><p>Click markers to vote on active reports.</p></div>
+                <div class="page-header">
+                    <h2>Live Incident Map</h2>
+                    <p>Click markers to vote on active reports.</p>
+                </div>
                 <div id="leaflet-map" class="map-container"></div>
             </section>
 
             <section id="report" class="page-section fade-in-up">
                 <div class="report-wrapper">
-                    <div class="report-header"><h2>AI Scanner</h2><p>Auto-detects issue & location.</p></div>
+                    <div class="report-header">
+                        <h2>AI Scanner</h2>
+                        <p>Auto-detects issue & location.</p>
+                    </div>
                     <div class="camera-container">
                         <video id="camera-feed" autoplay playsinline></video>
                         <canvas id="camera-canvas" style="display:none;"></canvas>
@@ -98,58 +140,111 @@
                             <span class="material-icons-round spin">radar</span>
                             <span id="ai-live-label">Scanning...</span>
                         </div>
-                        <div class="camera-overlay" style="display:none;"><button class="shutter-btn" onclick="capturePhoto()"></button></div>
+                        <div class="camera-overlay" style="display:none;"><button class="shutter-btn"
+                                onclick="capturePhoto()"></button></div>
                     </div>
-                    
+
                     <div class="camera-controls-new" style="display: flex; gap: 10px; margin-bottom: 1rem;">
-                        <button id="btn-capture" class="btn-primary full-width" onclick="takeSnapshot()">📸 Capture Photo</button>
-                        <button id="btn-submit-ai" class="btn-success full-width" onclick="processSnapshot()" style="display:none;">✅ Submit & Analyze</button>
+                        <button id="btn-capture" class="btn-primary full-width" onclick="takeSnapshot()">📸 Capture
+                            Photo</button>
+                        <button id="btn-submit-ai" class="btn-success full-width" onclick="processSnapshot()"
+                            style="display:none;">✅ Submit & Analyze</button>
                     </div>
 
                     <div class="form-actions">
                         <input type="file" id="file-upload" accept="image/*" onchange="handleFileUpload(event)" hidden>
-                        <button class="btn-secondary full-width" onclick="document.getElementById('file-upload').click()"><span class="material-icons-round">upload_file</span> Upload from Gallery</button>
+                        <button class="btn-secondary full-width"
+                            onclick="document.getElementById('file-upload').click()"><span
+                                class="material-icons-round">upload_file</span> Upload from Gallery</button>
                     </div>
                 </div>
             </section>
 
             <section id="admin" class="page-section fade-in-up">
-                <div class="page-header"><h2>Municipal Admin Portal</h2><button class="btn-text" onclick="loadAdminPanel()">Refresh Live</button></div>
+                <div class="page-header">
+                    <h2>Municipal Admin Portal</h2><button class="btn-text" onclick="loadAdminPanel()">Refresh
+                        Live</button>
+                </div>
                 <div class="table-container">
                     <table class="admin-table">
-                        <thead><tr><th>Image</th><th>Details</th><th>Location</th><th>Votes</th><th>Status</th><th>Action</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Details</th>
+                                <th>Location</th>
+                                <th>Votes</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
                         <tbody id="admin-tbody"></tbody>
                     </table>
                 </div>
             </section>
-            
+
             <section id="services" class="page-section fade-in-up">
-                <div class="page-header center"><h2>City Services</h2></div>
+                <div class="page-header center">
+                    <h2>City Services</h2>
+                </div>
                 <div class="services-grid">
-                    <div class="service-card" onclick="openServiceModal('Waste Pickup')"><span class="material-icons-round s-icon">delete</span><h3>Waste Pickup</h3></div>
-                    <div class="service-card" onclick="openServiceModal('Street Light')"><span class="material-icons-round s-icon">light_mode</span><h3>Street Light</h3></div>
-                    <div class="service-card" onclick="openServiceModal('Road Repair')"><span class="material-icons-round s-icon">edit_road</span><h3>Road Repair</h3></div>
-                    <div class="service-card" onclick="openServiceModal('Water Supply')"><span class="material-icons-round s-icon">water_drop</span><h3>Water Supply</h3></div>
-                    <div class="service-card" onclick="openServiceModal('Fire Safety')"><span class="material-icons-round s-icon danger">local_fire_department</span><h3>Fire Safety</h3></div>
-                    <div class="service-card" onclick="openServiceModal('Ambulance')"><span class="material-icons-round s-icon danger">medical_services</span><h3>Ambulance</h3></div>
-                    <div class="service-card" onclick="openServiceModal('Tree Trimming')"><span class="material-icons-round s-icon success">park</span><h3>Tree Trimming</h3></div>
-                    <div class="service-card" onclick="openServiceModal('Drainage')"><span class="material-icons-round s-icon">water</span><h3>Drainage</h3></div>
-                    <div class="service-card" onclick="openServiceModal('Pest Control')"><span class="material-icons-round s-icon">bug_report</span><h3>Pest Control</h3></div>
+                    <div class="service-card" onclick="openServiceModal('Waste Pickup')"><span
+                            class="material-icons-round s-icon">delete</span>
+                        <h3>Waste Pickup</h3>
+                    </div>
+                    <div class="service-card" onclick="openServiceModal('Street Light')"><span
+                            class="material-icons-round s-icon">light_mode</span>
+                        <h3>Street Light</h3>
+                    </div>
+                    <div class="service-card" onclick="openServiceModal('Road Repair')"><span
+                            class="material-icons-round s-icon">edit_road</span>
+                        <h3>Road Repair</h3>
+                    </div>
+                    <div class="service-card" onclick="openServiceModal('Water Supply')"><span
+                            class="material-icons-round s-icon">water_drop</span>
+                        <h3>Water Supply</h3>
+                    </div>
+                    <div class="service-card" onclick="openServiceModal('Fire Safety')"><span
+                            class="material-icons-round s-icon danger">local_fire_department</span>
+                        <h3>Fire Safety</h3>
+                    </div>
+                    <div class="service-card" onclick="openServiceModal('Ambulance')"><span
+                            class="material-icons-round s-icon danger">medical_services</span>
+                        <h3>Ambulance</h3>
+                    </div>
+                    <div class="service-card" onclick="openServiceModal('Tree Trimming')"><span
+                            class="material-icons-round s-icon success">park</span>
+                        <h3>Tree Trimming</h3>
+                    </div>
+                    <div class="service-card" onclick="openServiceModal('Drainage')"><span
+                            class="material-icons-round s-icon">water</span>
+                        <h3>Drainage</h3>
+                    </div>
+                    <div class="service-card" onclick="openServiceModal('Pest Control')"><span
+                            class="material-icons-round s-icon">bug_report</span>
+                        <h3>Pest Control</h3>
+                    </div>
                 </div>
             </section>
 
             <section id="leaderboard" class="page-section fade-in-up">
-                <div class="page-header"><h2>Rewards & Eco-Mission</h2></div>
+                <div class="page-header">
+                    <h2>Rewards & Eco-Mission</h2>
+                </div>
                 <div class="gamification-layout">
                     <div class="level-card">
                         <div class="level-header">
                             <span class="material-icons-round medal-icon">military_tech</span>
-                            <div><h3 id="current-tier-name">Citizen</h3><small>Current Rank</small></div>
+                            <div>
+                                <h3 id="current-tier-name">Citizen</h3><small>Current Rank</small>
+                            </div>
                         </div>
                         <div class="score-display"><span id="user-points">0</span> <small>PTS</small></div>
                         <div class="progress-wrapper">
-                            <div class="progress-info"><span>Next Tier</span><span id="next-tier-points">500</span></div>
-                            <div class="progress-bar-bg"><div class="progress-bar-fill" id="reward-progress"></div></div>
+                            <div class="progress-info"><span>Next Tier</span><span id="next-tier-points">500</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" id="reward-progress"></div>
+                            </div>
                         </div>
                     </div>
 
@@ -161,25 +256,31 @@
                                 <h4>Plant a Tree</h4>
                                 <p>Upload Quarterly Proof</p>
                                 <div class="proof-tracker">
-                                    <span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span>
+                                    <span class="dot empty"></span><span class="dot empty"></span><span
+                                        class="dot empty"></span><span class="dot empty"></span>
                                 </div>
-                                <button class="btn-sm mt-2" onclick="triggerGameProof('Tree Planting')">📸 Add Geotag Proof</button>
+                                <button class="btn-sm mt-2" onclick="triggerGameProof('Tree Planting')">📸 Add Geotag
+                                    Proof</button>
                             </div>
                             <div class="game-card">
                                 <span class="game-emoji">♻️</span>
                                 <h4>Trash Sorter</h4>
                                 <p>Sort & Snap Proof</p>
                                 <div class="proof-tracker">
-                                    <span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span>
+                                    <span class="dot empty"></span><span class="dot empty"></span><span
+                                        class="dot empty"></span><span class="dot empty"></span>
                                 </div>
-                                <button class="btn-sm mt-2" onclick="triggerGameProof('Trash Sorting')">📸 Add Geotag Proof</button>
+                                <button class="btn-sm mt-2" onclick="triggerGameProof('Trash Sorting')">📸 Add Geotag
+                                    Proof</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="leaderboard-panel full-width">
                         <h3>🏆 Top Heroes</h3>
-                        <table class="admin-table"><tbody id="mock-leaderboard-body"></tbody></table>
+                        <table class="admin-table">
+                            <tbody id="mock-leaderboard-body"></tbody>
+                        </table>
                     </div>
                 </div>
             </section>
@@ -188,7 +289,9 @@
 
     <div class="modal-overlay" id="report-form-modal">
         <div class="modal-box">
-            <div class="modal-header"><h3>Finalize Report</h3><button class="btn-text" onclick="closeModal('report-form-modal')">✕</button></div>
+            <div class="modal-header">
+                <h3>Finalize Report</h3><button class="btn-text" onclick="closeModal('report-form-modal')">✕</button>
+            </div>
             <div class="ai-summary">
                 <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
                     <strong>Detected:</strong> <span id="form-category" class="highlight">Scanning...</span>
@@ -197,30 +300,40 @@
                     <strong>Location:</strong> <span id="form-location" class="location-tag">Fetching...</span>
                 </div>
             </div>
-            
+
             <div class="form-row">
-                <div class="form-group half"><label>Your Name</label><input type="text" id="report-name" placeholder="John Doe"></div>
-                <div class="form-group half"><label>Phone Number</label><input type="tel" id="report-phone" placeholder="+91..."></div>
+                <div class="form-group half"><label>Your Name</label><input type="text" id="report-name"
+                        placeholder="John Doe"></div>
+                <div class="form-group half"><label>Phone Number</label><input type="tel" id="report-phone"
+                        placeholder="+91..."></div>
             </div>
-            <div class="form-group"><label>Description</label><textarea id="report-desc" rows="3" placeholder="Describe the issue..."></textarea></div>
-            
+            <div class="form-group"><label>Description</label><textarea id="report-desc" rows="3"
+                    placeholder="Describe the issue..."></textarea></div>
+
             <button class="btn-primary full-width" onclick="confirmSubmission()">Submit Complaint</button>
         </div>
     </div>
 
     <div class="modal-overlay" id="service-modal">
         <div class="modal-box">
-            <div class="modal-header"><h3 id="service-modal-title">Request</h3><button class="btn-text" onclick="closeModal('service-modal')">✕</button></div>
+            <div class="modal-header">
+                <h3 id="service-modal-title">Request</h3><button class="btn-text"
+                    onclick="closeModal('service-modal')">✕</button>
+            </div>
             <div id="service-form-content">
                 <div class="form-row">
-                    <div class="form-group half"><label>Name</label><input type="text" id="srv-name" placeholder="Name"></div>
-                    <div class="form-group half"><label>Mobile No</label><input type="tel" id="srv-phone" placeholder="Mobile"></div>
+                    <div class="form-group half"><label>Name</label><input type="text" id="srv-name" placeholder="Name">
+                    </div>
+                    <div class="form-group half"><label>Mobile No</label><input type="tel" id="srv-phone"
+                            placeholder="Mobile"></div>
                 </div>
                 <div class="form-group">
                     <label>Location</label>
                     <div style="display:flex; gap:10px;">
                         <input type="text" id="srv-location" readonly placeholder="Click fetch ->" style="flex:1;">
-                        <button class="btn-secondary" onclick="fetchServiceLocation()" style="width:auto; padding:8px;"><span class="material-icons-round">my_location</span></button>
+                        <button class="btn-secondary" onclick="fetchServiceLocation()"
+                            style="width:auto; padding:8px;"><span
+                                class="material-icons-round">my_location</span></button>
                     </div>
                 </div>
                 <div class="form-group"><label>Description</label><textarea id="srv-desc" rows="3"></textarea></div>
@@ -241,11 +354,85 @@
 
     <div id="toast">Notification</div>
 
+    <!-- Authentication Modal -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal-box auth-modal-box">
+            <div class="modal-header">
+                <h3 id="auth-modal-title">Login</h3>
+                <button class="btn-text" onclick="closeAuthModal()">✕</button>
+            </div>
+
+            <!-- Auth Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('signin')">Sign In</button>
+                <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+            </div>
+
+            <!-- Sign In Form -->
+            <div id="signin-form" class="auth-form active">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="signin-email" placeholder="your.email@example.com" autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="signin-password" placeholder="Enter password"
+                        autocomplete="current-password">
+                </div>
+                <button class="btn-primary full-width" onclick="handleSignIn()">Sign In</button>
+                <button class="btn-text full-width" onclick="showPasswordReset()" style="margin-top:8px;">Forgot
+                    Password?</button>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="signup-name" placeholder="John Doe" autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="signup-email" placeholder="your.email@example.com" autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="signup-password" placeholder="At least 6 characters"
+                        autocomplete="new-password">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="signup-confirm" placeholder="Re-enter password"
+                        autocomplete="new-password">
+                </div>
+                <button class="btn-primary full-width" onclick="handleSignUp()">Create Account</button>
+            </div>
+
+            <!-- Password Reset Form -->
+            <div id="reset-form" class="auth-form">
+                <p style="margin-bottom: 1rem; opacity: 0.8;">Enter your email to receive a password reset link.</p>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="reset-email" placeholder="your.email@example.com" autocomplete="email">
+                </div>
+                <button class="btn-primary full-width" onclick="handlePasswordReset()">Send Reset Link</button>
+                <button class="btn-text full-width" onclick="switchAuthTab('signin')" style="margin-top:8px;">Back to
+                    Sign In</button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+
+    <!-- Firebase and Auth Scripts (Module Type) -->
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="auth.js"></script>
+
+    <!-- App Scripts -->
     <script src="api.js"></script>
     <script src="map.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>

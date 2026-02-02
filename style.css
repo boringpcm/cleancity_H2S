@@ -602,3 +602,71 @@ body { background: var(--bg-body); color: var(--text-main); padding-top: 70px; o
 .car { bottom: 15%; left: -100px; font-size: 4rem; animation: drive 20s linear infinite; }
 @keyframes fly { from { transform: translateX(110vw); } to { transform: translateX(-10vw); } }
 @keyframes drive { 0% { transform: translateX(110vw) scaleX(-1); } 100% { transform: translateX(-110vw) scaleX(-1); } }
+
+/* === AUTHENTICATION MODAL STYLES === */
+.auth-modal-box {
+    max-width: 450px;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    background: var(--bg-body);
+    border-radius: 12px;
+    padding: 4px;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.2s;
+    color: var(--text-muted);
+}
+
+.auth-tab.active {
+    background: var(--primary);
+    color: white;
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-weight: 600;
+    padding: 8px 16px;
+}
+
+.btn-text:hover {
+    color: var(--primary);
+}
+
+.status-select {
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-body);
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+}
